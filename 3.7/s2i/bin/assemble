@@ -31,7 +31,7 @@ fi
 
 if [[ -f setup.py && -z "$DISABLE_SETUP_PY_PROCESSING" ]]; then
   echo "---> Installing application ..."
-  pip3 install .
+  pip3 install . .[server]
 fi
 
 if should_collectstatic; then
