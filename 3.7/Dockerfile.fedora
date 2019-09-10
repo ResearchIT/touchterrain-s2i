@@ -40,7 +40,7 @@ LABEL summary="$SUMMARY" \
 
 RUN INSTALL_PKGS="python3 python3-devel python3-setuptools python3-pip \
         nss_wrapper httpd httpd-devel atlas-devel gcc-gfortran gdal gdal-devel python3-gdal python3-numpy \
-        libffi-devel libtool-ltdl enchant" && \
+        libffi-devel libtool-ltdl enchant tmpwatch" && \
     dnf -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     dnf -y clean all --enablerepo='*'
