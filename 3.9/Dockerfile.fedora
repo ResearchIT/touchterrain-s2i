@@ -58,7 +58,7 @@ COPY ./root/ /
 # - In order to drop the root user, we have to make some directories world
 #   writable as OpenShift default security model is to run the container
 #   under random UID.
-RUN python3.9 -m venv ${APP_ROOT} && \
+RUN python3.9 -m venv --system-site-packages ${APP_ROOT} && \
 chown -R 1001:0 ${APP_ROOT} && \
 fix-permissions ${APP_ROOT} -P
 
