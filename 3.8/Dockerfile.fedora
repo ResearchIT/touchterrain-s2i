@@ -40,6 +40,7 @@ LABEL summary="$SUMMARY" \
 
 RUN INSTALL_PKGS="python3 python3-devel python3-setuptools python3-pip nss_wrapper \
         httpd httpd-devel atlas-devel gcc-gfortran libffi-devel \
+        gdal gdal-devel python3-gdal python3-numpy tmpwatch \
         libtool-ltdl enchant redhat-rpm-config" && \
     dnf -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
@@ -57,7 +58,7 @@ COPY ./root/ /
 # - In order to drop the root user, we have to make some directories world
 #   writable as OpenShift default security model is to run the container
 #   under random UID.
-RUN python3.8 -m venv ${APP_ROOT} && \
+RUN python3.8 -m venv --system-site-packages ${APP_ROOT} && \
 chown -R 1001:0 ${APP_ROOT} && \
 fix-permissions ${APP_ROOT} -P
 
